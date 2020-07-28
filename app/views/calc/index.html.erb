@@ -1,0 +1,27 @@
+    <div>
+      <form name="form1" onload="damage()" >
+        <label>攻撃
+        <input id="field1" value="200" onKeyUp="damage()">
+        <label>アビ威力
+        <input id="field2" value="100" onKeyUp="damage()">
+        <label>耐性
+        <input id="field3" value="0" onKeyUp="damage()">
+        <label>防御
+        <input id="field4" value="0" onKeyUp="damage()">
+        <label>ダメージ
+        <input id="field_total" value="0" readonly>
+      </form>
+    </div>
+
+    <script>
+    function damage(){
+  var atk = document.form1.field1.value;
+  var pow = document.form1.field2.value;
+  var res = document.form1.field3.value;
+  var def = document.form1.field4.value;
+  
+
+  document.form1.field_total.value = atk*pow/100*(100-res)/100*(100-def)/100
+};
+
+    </script>
