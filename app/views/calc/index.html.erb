@@ -1,27 +1,101 @@
-    <div>
-      <form name="form1" onload="damage()" >
-        <label>攻撃
-        <input id="field1" value="200" onKeyUp="damage()">
-        <label>アビ威力
-        <input id="field2" value="100" onKeyUp="damage()">
-        <label>耐性
-        <input id="field3" value="0" onKeyUp="damage()">
-        <label>防御
-        <input id="field4" value="0" onKeyUp="damage()">
-        <label>ダメージ
-        <input id="field_total" value="0" readonly>
-      </form>
-    </div>
+<div class="container">
+  <div class="row bg-info">
+    <form name="form" class="col-sm-6">
+      <table class="table container">
+        <tbody>
+        
+        <tr>
+          <td>基本攻撃</td>
+          <td class="col-xs">
+            <input type="tel" id="field1" class="form-control" value="200" maxlength="4">
+          </td>
+        </tr>
+        <tr>
+          <td>装備</td>
+          <td>
+            <input type="tel" id="field2" class="form-control" value="0" maxlength="4">
+          </td>
+        </tr>
+        <tr>
+          <td>石像</td>
+          <td>
+            <input type="tel" id="field3" class="form-control" value="0" maxlength="4">
+          </td>
+        </tr>
+        <tr>
+          <td>VCの攻撃ステ</td>
+          <td>
+            <input type="tel" id="field4" class="form-control" value="100" maxlength="4">
+          </td>
+        </tr>
+        <tr>
+          <td>アビリティボードの%</td>
+          <td>
+            <input type="tel" id="field5" class="form-control" value="100" maxlength="4">
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </form>
+    <form name="form1_1" class="col-sm-6">
+      <table class="table container">
+        <tr>
+          <td>攻撃</td>
+          <td class="col-xs">
+            <input type="tel" id="field1" class="form-control" value="100" onKeyUp="damage()" maxlength="4">
+          </td>
+        </tr>
+        <tr>
+          <td>アビ倍率</td>
+          <td class="col-xs">
+            <input type="tel" id="field2" class="form-control" value="100" onKeyUp="damage()" maxlength="5">
+          </td>
+        </tr>
+        <tr>
+          <td>耐性</td>
+          <td class="col-xs">
+            <input type="tel" id="field3" class="form-control" value="0" onKeyUp="damage()" maxlength="4">
+          </td>
+        </tr>
+        <tr>
+          <td>防御</td>
+          <td class="col-xs">
+            <input type="tel" id="field4" class="form-control" value="0" onKeyUp="damage()" maxlength="4">
+          </td>
+        </tr>
+        <tr>
+          <td>Brave</td>
+          <td class="col-xs">
+            <input type="tel" id="field5" class="form-control" value="97" onKeyUp="damage()" maxlength="4">
+          </td>
+        </tr>
+        <tr>
+          <td>ダメージ</td>
+          <td class="col-xs">
+            <input type="tel" id="field_total" class="form-control" value="0" onKeyUp="damage()" maxlength="4" readonly>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>
 
     <script>
     function damage(){
-  var atk = document.form1.field1.value;
-  var pow = document.form1.field2.value;
-  var res = document.form1.field3.value;
-  var def = document.form1.field4.value;
-  
+      var element = document.getElementById("atk-flag")
 
-  document.form1.field_total.value = atk*pow/100*(100-res)/100*(100-def)/100
-};
+  var atk = document.form1_1.field1.value;
+  var pow = document.form1_1.field2.value/100;
+  var res = 1 - document.form1_1.field3.value/100;
+  var def = 1 - document.form1_1.field4.value/100;
+  var brv = 0.5 +document.form1_1.field5.value/100;
+
+  document.form1_1.field_total.value = parseInt(atk*pow*res*def*brv);
+    }
 
     </script>
+
+    追加機能のめも
+    <p>詳細計算（基本ステ+石像、装備、VC、あびぼーど）に変更←jobによって計算が変わるため難航中</p>
+    <p>魔法物理をifでわける←後回し</p>
+    <p>次の１すてでダメージ変動がどうなるか←一番上のが終わってから</p>
